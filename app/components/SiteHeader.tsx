@@ -1,11 +1,10 @@
 import { buttonVariants } from "@/components/ui/button"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
-import { Icon } from "lucide-react"
-import { Inconsolata } from "next/font/google"
 import Link from "next/link"
 import { Icons } from "./icons"
 import { MainNav } from "./main-nav"
+import MobileNav from "./mobile-nav"
 
 
 
@@ -25,7 +24,7 @@ const SiteHeader = () => {
                         <div 
                             className={cn(
                                 buttonVariants({ variant: "ghost"}), 
-                                "w-10 px-0")}
+                                "w-10 px-0 hidden sm:inline-flex")}
                                 >
                                     {/* Getting your social icons */}
                                 <Icons.gitHub className="h-4 w-4" />
@@ -41,13 +40,14 @@ const SiteHeader = () => {
                         <div 
                             className={cn(
                                 buttonVariants({ variant: "ghost"}), 
-                                "w-10 px-0")}
+                                "w-10 px-0 hidden sm:inline-flex")}
                                 >
                                     {/* Getting your social icons */}
                                 <Icons.twitter className="h-4 w-4" />
                                 <span className="sr-only">Twitter</span>
                          </div>
                     </Link>
+                    <MobileNav />
                 </nav>
             </div>
         

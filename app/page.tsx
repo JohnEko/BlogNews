@@ -14,9 +14,9 @@ export default function Home() {
       
         
 
-        <div className="mt-4 ml-[20px] flex justify-center grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-20">
+        {/* <div className="mt-4 ml-[20px] flex justify-center grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-20"> */}
           {/* <PropertyNewsList /> */}
-        </div>      
+        {/* </div>       */}
             
         {/* </div> */}
         {/* space from the top to the trending topics mt-4 grid col-span-1 md:col-span-6 */}
