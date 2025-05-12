@@ -11,7 +11,7 @@ import { Icons } from './icons';
 import { siteConfig } from '@/config/site';
 
 
-export default function MobileNav(){
+export function MobileNav(){
   const [open, setOpen] = useState(false);
   return (
     //after this go back to site he
@@ -22,10 +22,13 @@ export default function MobileNav(){
                 <SheetTitle className='sr-only'>Toggle Theme</SheetTitle>
             </Button>
         </SheetTrigger>
-        <SheetContent side='right'>
-            {/* adding content when the app is used on mobilelink
+
+        {/* adding content when the app is used on mobilelink
             when the app is on mobile mode this function represent mobile mode */}
-            <MobileLink onOpenChenge={setOpen} href="/" className="flex items-center">
+        <SheetContent side='right'>
+            <MobileLink onOpenChenge={setOpen} href="/" 
+            className="flex items-center"
+            >
                 <Icons.logo className='mr-2 h-4 w-4' />
                 <span className='font-bold'>{siteConfig.name}</span>
             </MobileLink>
@@ -36,10 +39,16 @@ export default function MobileNav(){
                 <MobileLink onOpenChenge={setOpen} href="/about">
                     About
                 </MobileLink>
-                <Link target='_blank' rel='noreferrer' href={siteConfig.links.github}>
+                <Link target='_blank' 
+                    rel='noreferrer' 
+                    href={siteConfig.links.github}
+                >
                     Github
                 </Link>
-                <Link target='_blank' rel='noreferrer' href={siteConfig.links.twitter}>
+                <Link target='_blank' 
+                    rel='noreferrer' 
+                    href={siteConfig.links.twitter}
+                >
                     Twitter
                 </Link>
             </div>
@@ -69,7 +78,7 @@ function MobileLink({
                     router.push(href.toString());
                     onOpenChenge?.(false);
                 }}
-                className="className"
+                className={className}
                 {...props}
                 >
                 {children}

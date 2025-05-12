@@ -3,7 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 // import Navbar from "./components/Navbar/Navbar";
 import { cn } from "@/lib/utils";
-import SiteHeader from "./components/SiteHeader";
+
+import { Providers } from "./components/provider";
+import { SiteHeader } from "./components/SiteHeader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,16 +28,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-pt-[3.5rem]">
       <body
-        className={` ${cn("min-h-screen bg-bacground font-sans antialiased")} ${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <div className="relative flex min-h-dvh flex-col- bg-background">
-          <SiteHeader />
-          {/* <Navbar /> */}
-          {/* <main className="flex-1"> */}
-            {children}
-          {/* </main> */}
-        </div>
+        className={` ${cn("min-h-screen bg-background font-sans antialiased")}
+         ${geistSans.variable} ${geistMono.variable} antialiased`}>
+        
+        <Providers>
+          <div className="relative flex min-h-dvh flex-col bg-background">
+            
+            <SiteHeader />
+            <main className="flex-1">{children}</main>
+          </div>
+        </Providers>
       </body>
     </html>
   );
