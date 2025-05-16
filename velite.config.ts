@@ -1,12 +1,14 @@
-import { defineConfig, defineCollection, s} from "velite";
+import { defineConfig, defineCollection, s } from "velite";
 
 
 // We using this as the backend for the blog
 // the computer fileds allow us to parse the post data
-const computedFields = <T extends { slug: string}>(data: T) =>({
-    ...data,
-    slugAsParams: data.slug.split("/").slice(1).join("/")
-})
+function computedFields<T extends { slug: string; }>(data: T) {
+    return ({
+        ...data,
+        slugAsParams: data.slug.split("/").slice(1).join("/")
+    });
+}
 
 
 const posts = defineCollection({
@@ -37,3 +39,7 @@ export default defineConfig({
         remarkPlugins: [],
     }
 });
+export function build(arg0: { watch: boolean; clean: boolean; }): any {
+  throw new Error('Function not implemented.');
+}
+
