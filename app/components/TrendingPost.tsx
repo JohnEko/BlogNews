@@ -1,5 +1,5 @@
 import React from 'react'
-//import "./trending.css"
+import "./trendingPost.css"
 import Link from 'next/link';
 
 interface TrendingProps {

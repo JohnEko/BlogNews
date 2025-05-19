@@ -46,10 +46,14 @@ export default function BlogPage() {
 
     return(
         <div className="container max-w-4xl py-6 lg:py-10">
-            <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between">
-                <div className="flex-1 space-y-4">
+            <div className="flex flex-col-[1rem 3rem 1rem] items-start gap-4 md:flex-row md:justify-between rounded-xl">
+                <div className="flex-1 space-x-1">
+                    <h1 className="inline-block pt-6 font-black text-4l lg:text-3l">SiteAdvert</h1>
+                    <hr className="mt-2" />
+                </div>
+                <div className="flex-3 space-y-4">
                     {/* can add pr-60 to move right the blog is a slug*/}
-                    <h1 className="inline-block font-black text-4xl lg:text-5xl">NaijaGist</h1>
+                    <h1 className="inline-block font-black text-4xl lg:text-5xl ">NaijaGist</h1>
                     <hr />
                     {/* add what our blog is about */}
                     <p className="text-xl text-muted-foreground">
@@ -60,7 +64,7 @@ export default function BlogPage() {
                     {/* now we can get the data from backend
                      when we click details we go to detail page
                      get the top 3 trending stories and top stories  */}
-                    <a href="/news-details">News</a>
+                    <Link href="/news-details">News</Link>
                         {displayPost && displayPost.length > 0 &&
                             displayPost
                             .filter(
@@ -68,17 +72,17 @@ export default function BlogPage() {
                                     !item.trending && item.top
                         )
                             .slice(0, 3)
-
-                            .map((item: {item: {
-                                            _id: string
-                                            img: string
-                                            category: string
-                                            date: string
-                                            title: string
-                                            brief: string
-                                            avatar: string
-                                            author: string
-                                        }}) => 
+                            .map((
+                                item: {
+                                    _id: string
+                                    img: string
+                                    category: string
+                                    date: string
+                                    title: string
+                                    brief: string
+                                    avatar: string
+                                    author: string
+                                }) =>      
                                 
                                 <>
                                 <PostItemroute 
@@ -97,9 +101,10 @@ export default function BlogPage() {
             </div>
 
             {/* creating a trending post or top topics */}
-            
+            <div className="flex-1 md:flex-row md:justify-between">
             <div className="trending">
                 <h3>Trending</h3>
+                <hr />
                 <ul className="trending-post">
                     {displayPost && displayPost.length > 0 &&
                             displayPost
@@ -118,11 +123,13 @@ export default function BlogPage() {
                                     index : number
                                     ) =>(
                             // we need to define the index and item on the child component
-                                <TrendingPost 
+                               <> <TrendingPost 
                                     key={item._id}
                                     index={index}
-                                    item={item}
+                                    item={item}      
                                 />
+                                <hr className="mt-4" />
+                                </>
                             ))
                             
                     }
@@ -131,78 +138,9 @@ export default function BlogPage() {
 
             </div>
             
-        
+        </div>
             
         </div>
         
     )
 }
-
-
-// "use client"
-// import { PostItem } from "../components/post-item"
-// import React, {useState, useEffect} from "react"
-// import { useRouter } from "next/navigation"
-
-// // This is a slug function just like an id
-// export default async function BlogPage() {
-// // lets work with our backend data
-//     const router = useRouter()
-//     const [displayPost, setdisplayPost] = useState<any | []>([])
-
-//     const getItemsData = () => {
-//         fetch(`/api/postitems`)
-//             .then(response => response.json())
-//             .then(data => setdisplayPost(data))
-//             .catch(e => console.log(e.message))
-//     };
-//      useEffect(() => {
-//         getItemsData()
-//      }, []);
-
-//     return(
-//         <div className="container max-w-4xl py-6 lg:py-10">
-//             <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between">
-//                 <div className="flex-1 space-y-4">
-//                     {/* can add pr-60 to move right the blog is a slug*/}
-//                     <h1 className="inline-block font-black text-4xl lg:text-5xl">Blog</h1>
-//                     {/* add what our blog is about */}
-//                     <p className="text-xl text-muted-foreground">
-//                         The web development blog forum
-                    
-//                     </p>
-//                     <hr className="mt-8" />
-//                 </div>
-                
-//             </div>
-//             {/* to display all our post to the frontend */}
-//             <hr className="mt-8" />
-//             {displayPost?.length > 0 ? (
-//                  <ul className="flex flex-col">
-//                     {displayPost.map((item: {item: {id: string; title: string}}) => (        
-//                         <p key={item._id}>{item.title}</p>
-//                     ))} 
-
-
-//         </div>
-        
-//     )
-// }
-
-
-//                     {displayPost.map((posts: any) => {
-//                         const {id, date, title, description} = posts
-//                         return <li key={id}>
-//                             <PostItem 
-//                                 id={id} 
-//                                 date={date} 
-//                                 title={title} 
-//                                 description={description}/>
-//                         </li>
-//                     })}
-//                 </ul>
-//             ):(
-//                 <p>No post found yet</p>
-
-//             )}
-//             {/* <p>No post found yet</p> */}
