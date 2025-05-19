@@ -28,11 +28,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-pt-[3.5rem]">
+    <html lang="en" 
+      className="scroll-pt-[3.5rem]">
       <body
         className={` ${cn("min-h-screen bg-background font-sans antialiased")}
          ${geistSans.variable} ${geistMono.variable} antialiased`}>
         
+        {/* we rap our provider so all pages in the website can have the function */}
         <Providers>
           <div className="relative flex min-h-dvh flex-col bg-background">
             
