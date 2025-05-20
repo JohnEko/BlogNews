@@ -1,17 +1,13 @@
 import Link from 'next/link'
+import "./postItemOne.css"
 import React from 'react'
+import { BlogPageProps } from '../blog/page'
 
-export default function PostItemroute({item}: {
-    item: {
-        _id: string
-        img: string
-        category: string
-        date: string
-        title: string
-        brief: string
-        avatar: string
-        author: string
-    }
+export default function PostItemroute({
+    item
+}: {
+  item: BlogPageProps
+
 }) {
   return (
     <div className=''>
