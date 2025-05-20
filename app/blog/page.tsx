@@ -7,6 +7,21 @@ import { Link } from "lucide-react"
 import PostItemroute from "../section/PostItemroute"
 import Trending from "@/recentActivities/Trending"
 import TrendingPost from "../components/TrendingPost"
+import Preloader from "../components/Preloader"
+
+// sharing this data accross every location
+export interface BlogPageProps {
+    _id: string
+    img: string
+    category: string
+    date: string
+    title: string
+    brief: string
+    avatar: string
+    author: string
+}
+
+
 
 // This is a slug function just like an id
 export default function BlogPage() {
@@ -64,8 +79,9 @@ export default function BlogPage() {
                     {/* now we can get the data from backend
                      when we click details we go to detail page
                      get the top 3 trending stories and top stories  */}
+                     {/* if the data is ready show the post otherwise show preloader */}
                     <Link href="/news-details">News</Link>
-                        {displayPost && displayPost.length > 0 &&
+                        {displayPost && displayPost.length > 0 ? (
                             displayPost
                             .filter(
                                     (item: {trending: boolean; top: boolean}) =>
@@ -73,16 +89,7 @@ export default function BlogPage() {
                         )
                             .slice(0, 3)
                             .map((
-                                item: {
-                                    _id: string
-                                    img: string
-                                    category: string
-                                    date: string
-                                    title: string
-                                    brief: string
-                                    avatar: string
-                                    author: string
-                                }) =>      
+                                item: BlogPageProps) => (     
                                 
                                 <>
                                 <PostItemroute 
@@ -91,8 +98,11 @@ export default function BlogPage() {
                                 
                                 <hr className="mt-8" />
                                 </>
-                    
-                
+                            )
+                        )
+                        // Otherwise show this can do it in all your data mapping, we can use isloading for main project
+                    ):(
+                      <Preloader />
             
                 )
             }
@@ -110,16 +120,7 @@ export default function BlogPage() {
                             displayPost
                             .filter((item: {trending: boolean}) => item.trending)
                             .map((
-                                item: {
-                                    _id: string
-                                    img: string
-                                    category: string
-                                    date: string
-                                    title: string
-                                    brief: string
-                                    avatar: string
-                                    author: string
-                                    },
+                                item: BlogPageProps,
                                     index : number
                                     ) =>(
                             // we need to define the index and item on the child component
